@@ -3,9 +3,12 @@
  */
 public class BallThread extends Thread{
 
-    private Ball ball;
+private Ball ball;
 
-    public BallThread(Ball aBall){ball = aBall;}
+    public BallThread(Ball aBall){
+        this.setDaemon(true);
+        ball = aBall;
+    }
 
     public void run(){
         try {
@@ -14,7 +17,7 @@ public class BallThread extends Thread{
                 sleep(5);
             }
         } catch (InterruptedException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

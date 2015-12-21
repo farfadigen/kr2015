@@ -8,16 +8,19 @@ import java.awt.event.ActionListener;
  */
 public class BounceFrame extends JFrame {
 
+    private Player player;
     private BallPanel panel;
     public static final int DEFAULT_WIDTH = 800;
     public static final int DEFAULT_HEIGHT = 600;
 
     public BounceFrame(){
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        setResizable(false);
         setTitle("BounceThread");
 
         Container contentPane = getContentPane();
-        panel = new BallPanel();
+        panel = new BallPanel(contentPane);
+
         contentPane.add(panel, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
         addButton(buttonPanel, "Start", new ActionListener(){
