@@ -13,7 +13,7 @@ public class Player {
         hitBox = new Rectangle(x,y,width,height);
     }
 
-    public void moveOn_X_Axis(int speed){
+    public void moveXAxis(int speed){
         hitBox.x += speed;
         if(hitBox.x<0){
             hitBox.x=0;
@@ -22,6 +22,10 @@ public class Player {
             hitBox.x=arkane.getWidth()-hitBox.width;
         }
     }
+
+    public int getX(){return hitBox.x;}
+
+    public int getY(){return hitBox.y;}
 
     public int getWidth(){
         return hitBox.width;
@@ -35,7 +39,7 @@ public class Player {
         return hitBox.intersects(object.x, object.y, object.width, object.height);
     }
 
-    public void render(Graphics g){
+    public void draw(Graphics g){
         //g.setColor(new Color(200,200,200));
         g.fillRect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
