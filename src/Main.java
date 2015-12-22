@@ -17,6 +17,7 @@ public class Main {
         arkane.setSize(frame.getSize());
         frame.add(arkane);
 
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 }

@@ -6,13 +6,33 @@ import java.awt.*;
 public class Player {
 
     private Rectangle hitBox;
+    private Arkane arkane;
 
-    public Player(int x, int y, int width, int height){
+    public Player(Arkane ark, int x, int y, int width, int height){
+        arkane = ark;
         hitBox = new Rectangle(x,y,width,height);
     }
 
     public void moveOn_X_Axis(int speed){
         hitBox.x += speed;
+        if(hitBox.x<0){
+            hitBox.x=0;
+        }
+        if(hitBox.x+hitBox.width>arkane.getWidth()){
+            hitBox.x=arkane.getWidth()-hitBox.width;
+        }
+    }
+
+    public int getWidth(){
+        return hitBox.width;
+    }
+
+    public int getHeight(){
+        return hitBox.height;
+    }
+
+    public boolean collide(Rectangle object){
+        return hitBox.intersects(object.x, object.y, object.width, object.height);
     }
 
     public void render(Graphics g){
