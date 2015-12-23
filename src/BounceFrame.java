@@ -18,7 +18,7 @@ public class BounceFrame extends JFrame {
         setTitle("BounceThread");
 
         Container contentPane = getContentPane();
-        panel = new BallPanel();
+        //panel = new BallPanel(this);
         contentPane.add(panel, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
         addButton(buttonPanel, "Start", new ActionListener(){

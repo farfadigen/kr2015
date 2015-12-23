@@ -6,15 +6,15 @@ import java.awt.geom.Ellipse2D;
  */
 public class Ball {
 
-    private Component panel;
+    private BallPanel panel;
     private static final int XSIZE = 15;
     private static final int YSIZE = 15;
     private int x = 0;
     private int y = 0;
-    private int dx = 2;
-    private int dy = 2;
+    private int dx = 5;
+    private int dy = 5;
 
-    public Ball(Component c){panel = c;}
+    public Ball(BallPanel c){panel = c;}
 
     public void draw(Graphics2D g2){g2.fill(new Ellipse2D.Double(x,y,XSIZE,YSIZE));}
 

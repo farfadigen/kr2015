@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 /**
  * Created by user on 2015-12-21.
@@ -11,24 +10,31 @@ public class Arkane extends JPanel{
     private Player player;
     private Shell shell;
     private boolean isRunning = false;
+    //private boolean isActive = false;
     private Brick brick;
     private Brick[][] walls;
 
-    public Arkane(Frame container){
-        container.addKeyListener(new KeyAdapter() {
+    public Arkane(final JFrame frame, final BallPanel menu){
+        frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(!isRunning){
-                    if(e.getKeyCode() == KeyEvent.VK_SPACE){start();}
+                    if(e.getKeyCode() == KeyEvent.VK_SPACE){
+                        if(!isRunning&&!arkThread.isAlive()){start();}
+                        else if(!isRunning&&arkThread.isAlive()){
+                            setVisible(false);
+                            menu.setVisible(true);
+                        }
+                    }
                 }
                 else {
                     if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                        player.moveXAxis(20);
+                        player.moveXAxis(23);
                     }
                     if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                        player.moveXAxis(-20);
+                        player.moveXAxis(-23);
                     }
-                    //repaint();
+                    repaint();
                 }
             }
         });
@@ -53,7 +59,7 @@ public class Arkane extends JPanel{
                             shell.tick();
                             repaint();
                             try {
-                                Thread.sleep(25);
+                                Thread.sleep(17);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -89,6 +95,14 @@ public class Arkane extends JPanel{
         return player;
     }
 
+    /*public boolean isActive(){
+        return isActive;
+    }
+
+    public void setActive(boolean isActive){
+        this.isActive = isActive;
+    }*/
+
     public Brick[][] getWalls(){return walls;}
 
     public void lose(){
@@ -122,7 +136,10 @@ public class Arkane extends JPanel{
         }
 
         if(!isRunning&&!arkThread.isAlive()){g.drawString("Press SPACE to start",345,550);}
-        if(!isRunning&&arkThread.isAlive()){g.drawString("Your score: "+shell.getScore(),345,550);}
+        if(!isRunning&&arkThread.isAlive()){
+            g.drawString("Your score: "+shell.getScore(),345,540);
+            g.drawString("Press SPACE to return",345,560);
+        }
         player.draw(g);
         shell.draw(g);
     }

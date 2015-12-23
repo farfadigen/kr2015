@@ -28,7 +28,7 @@ public class Shell {
 
     public void tick(){
         if(point.x-radius<=0&&move.width<0){move.width=-move.width;}
-        if(point.x+radius>=arkane.getWidth()&&move.width>0){move.width=-move.width;}
+        if(point.x+2*radius >= arkane.getWidth()&&move.width>0){move.width=-move.width;}
         if(point.y-radius<=0&&move.height<0){move.height=-move.height;}
         if(point.y+radius>=arkane.getHeight()&&move.height>0){arkane.lose();}
 

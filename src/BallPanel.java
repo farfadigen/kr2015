@@ -8,22 +8,68 @@ import java.util.ArrayList;
 public class BallPanel extends JPanel {
 
     private ArrayList<Ball> balls = new ArrayList<Ball>();
-    private Player player;
+    /*private JButton gameStart;
+    private JButton addButton;
+    private JButton exitButton;*/
+    //private boolean isActive = true;
 
-    /*BallPanel(){
-        addKeyListener(new KeyAdapter() {
+    BallPanel(final JFrame frame){
+        setSize(frame.getSize());
+        setLayout(null);
+
+        addBall();
+
+        /*gameStart = new JButton("Start Game");
+        gameStart.setSize(150,30);
+        gameStart.setLocation(325, 200);
+        add(gameStart);
+
+        addButton = new JButton("Add ball");
+        addButton.setSize(100,50);
+        addButton.setLocation(650, 500);
+        add(addButton);
+
+        exitButton = new JButton("Exit");
+        exitButton.setSize(150,30);
+        exitButton.setLocation(325, 350);
+        add(exitButton);
+
+        gameStart.addActionListener(new ActionListener() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-                    player.moveOn_X_Axis(10);
-                }
-                if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-                    player.moveOn_X_Axis(10);
-                }
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
             }
         });
+
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addBall();
+            }
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });*/
+    }
+
+    /*public boolean isActive(){
+        return isActive;
+    }
+
+    public void setActive(boolean isActive){
+        this.isActive = isActive;
     }*/
+
+    public void addBall() {
+        Ball ball = new Ball(this);
+        add(ball);
+        BallThread thread = new BallThread(ball);
+        thread.start();
+    }
 
     public void add(Ball b){
         balls.add(b);
