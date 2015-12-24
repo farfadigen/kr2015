@@ -1,18 +1,20 @@
 import javax.swing.*;
-import java.awt.event.*;
-import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 
 /**
  * Created by user on 2015-12-21.
  */
 public class Main {
 
-    private static JFrame frame;
+    private static JFrame frame, game;
     private static Arkane arkane;
     private static BallPanel menu;
     private static JButton gameStart;
     private static JButton addButton;
     private static JButton exitButton;
+    private static BackgroundSound bgSound;
 
     public static void main(final String[] args){
         frame = new JFrame("Arkane");
@@ -26,7 +28,22 @@ public class Main {
         menu.setVisible(true);
         frame.add(menu);
 
-        /*arkane = new Arkane(frame, menu);
+        File file = new File("src/OST2.wav");
+        /*Sound sound = new Sound(file);
+        sound.setVolume((float)0.7);
+        sound.play();*/
+        bgSound = new BackgroundSound(file.toString());
+        bgSound.setDaemon(true);
+        bgSound.start();
+
+        /*game = new JFrame("Arkane");
+        game.setSize(800,600);
+        game.setLocationRelativeTo(null);
+        game.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        game.setVisible(false);
+        game.setResizable(false);
+
+        arkane = new Arkane(frame, menu);
         arkane.setSize(frame.getSize());
         arkane.setVisible(true);
         frame.add(arkane);*/
@@ -49,11 +66,16 @@ public class Main {
         gameStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menu.setVisible(false);
-                arkane = new Arkane(frame, menu);
-                arkane.setSize(frame.getSize());
-                arkane.setVisible(true);
-                frame.add(arkane);
+                frame.setVisible(false);
+                game = new JFrame("Arkane");
+                game.setSize(800,600);
+                game.setLocationRelativeTo(null);
+                game.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                game.setResizable(false);
+                arkane = new Arkane(game, frame);
+                arkane.setSize(game.getSize());
+                game.add(arkane);
+                game.setVisible(true);
             }
         });
 
@@ -71,9 +93,6 @@ public class Main {
             }
         });
 
-        File file = new File("src/OST2.wav");
-        Sound sound = new Sound(file);
-        sound.setVolume((float)0.7);
-        sound.play();
+
     }
 }

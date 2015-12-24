@@ -14,16 +14,16 @@ public class Arkane extends JPanel{
     private Brick brick;
     private Brick[][] walls;
 
-    public Arkane(final JFrame frame, final BallPanel menu){
-        frame.addKeyListener(new KeyAdapter() {
+    public Arkane(final JFrame game, final JFrame frame){
+        game.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(!isRunning){
                     if(e.getKeyCode() == KeyEvent.VK_SPACE){
                         if(!isRunning&&!arkThread.isAlive()){start();}
                         else if(!isRunning&&arkThread.isAlive()){
-                            setVisible(false);
-                            menu.setVisible(true);
+                            game.setVisible(false);
+                            frame.setVisible(true);
                         }
                     }
                 }

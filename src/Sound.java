@@ -96,9 +96,10 @@ public class Sound {
     }
 
     //Статический метод, для удобства
-    public static Sound playSound(String s) {
+    public static Sound playSound(String s, float volume) {
         File f = new File(s);
         Sound snd = new Sound(f);
+        snd.setVolume(volume);
         snd.play();
         return snd;
     }
