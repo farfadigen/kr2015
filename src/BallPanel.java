@@ -68,6 +68,7 @@ public class BallPanel extends JPanel {
         Ball ball = new Ball(this);
         add(ball);
         BallThread thread = new BallThread(ball);
+        thread.setDaemon(true);
         thread.start();
     }
 

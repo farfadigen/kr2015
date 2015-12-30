@@ -29,10 +29,10 @@ public class Arkane extends JPanel{
                 }
                 else {
                     if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                        player.moveXAxis(23);
+                        player.moveXAxis(30);
                     }
                     if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                        player.moveXAxis(-23);
+                        player.moveXAxis(-30);
                     }
                     repaint();
                 }
@@ -52,7 +52,7 @@ public class Arkane extends JPanel{
         arkThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                shell.setVector(5,5);
+                shell.setVector(4,4);
                 synchronized (this){
                     while(true){
                         if(isRunning){

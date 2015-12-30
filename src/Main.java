@@ -28,7 +28,7 @@ public class Main {
         menu.setVisible(true);
         frame.add(menu);
 
-        File file = new File("src/OST2.wav");
+        File file = new File("OST2.wav");
         /*Sound sound = new Sound(file);
         sound.setVolume((float)0.7);
         sound.play();*/

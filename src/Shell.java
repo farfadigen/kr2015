@@ -5,6 +5,7 @@ import java.awt.*;
  */
 public class Shell {
 
+    private Player player;
     private Arkane arkane;
     private Dimension move = new Dimension(0,0);
     private Point point;
@@ -18,6 +19,7 @@ public class Shell {
         this.radius = radius;
         Brick[][] bricks1 = ark.getWalls();
         bricks=bricks1.length*bricks1[0].length;
+        player = arkane.getPlayer();
     }
 
     public void setVector(int x,int y){move = new Dimension(x,y);}
@@ -34,6 +36,62 @@ public class Shell {
 
         if(arkane.getPlayer().collide(new Rectangle(point.x, point.y,radius*2,radius*2))){
             move.height=-move.height;
+            if((point.x+radius)-player.getX()<=20){
+                if(move.width>0) {
+                    move.width = move.width/3;
+                }
+                else if(move.width<0){
+                    move.width = move.width*3;
+                }
+                else {
+                    move.width = -9;
+                }
+            }
+            else if((point.x+radius)-player.getX()<=40){
+                if(move.width>0) {
+                    move.width = move.width/2;
+                }
+                else if(move.width<0){
+                    move.width = move.width*2;
+                }
+                else {
+                    move.width = -3;
+                }
+            }
+            else if((point.x+radius)-player.getX()<=60){
+                move.width = move.width;
+                if(move.width==0){
+                    if((point.x+radius)-player.getX()>=50){
+                        move.width = 1;
+                    }
+                    else{
+                        move.width = -1;
+                    }
+                }
+            }
+            else if((point.x+radius)-player.getX()<=80){
+                if(move.width>0) {
+                    move.width = move.width*2;
+                }
+                else if(move.width<0){
+                    move.width = move.width/2;
+                }
+                else{
+                    move.width = 3;
+                }
+            }
+            else if((point.x+radius)-player.getX()<=100){
+                if(move.width>0) {
+                    move.width = move.width*3;
+                }
+                else if(move.width<0){
+                    move.width = move.width/3;
+                }
+                else {
+                    move.width = 9;
+                }
+            }
+
         }
 
         /*Player player = arkane.getPlayer();
